@@ -47,4 +47,5 @@ p5k <- p5k + expand_limits(x = .5 * 3600 * 1000)
 # p5k <- p5k + stat_smooth(method = "gam", formula = y ~ s(x, bs="cs"))
 p5k <- p5k + stat_smooth(method = "lm")
 
-grid.arrange(p5k, p10k, ncol=2, main="2015 Run For Pie")
+grid.arrange(p5k, p10k, ncol=2, top="2015 Run For Pie")
+
