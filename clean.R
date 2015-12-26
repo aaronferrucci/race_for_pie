@@ -1,4 +1,8 @@
-timestr <- function(ms) {
+timestr <- function(ms, format_seconds) {
+  if (missing(format_seconds)) {
+    format_seconds <- TRUE
+  }
+
   # convert to s
   seconds <- ms / 1000.0
   hours <- as.integer(seconds / 3600)
@@ -11,9 +15,14 @@ timestr <- function(ms) {
   second_prefix <- ifelse(seconds < 10, "0", "")
   seconds <- paste0(second_prefix, seconds)
 
-  time <- paste(hours, minutes, seconds, sep=":")
+  if (format_seconds) {
+    time <- paste(hours, minutes, seconds, sep=":")
+  } else {
+    time <- paste(hours, minutes, sep=":")
+  }
   return(time)
 }
+
 split_to_ms <- function(split) {
   val <- as.numeric(split)
   seconds <- 3600 * val[1] + 60 * val[2] + val[3]
@@ -43,16 +52,16 @@ clean <- function(f) {
   data$name <- as.character(data$name)
   data$elapsed <- as.character(data$elapsed)
   data$elapsed <- hms_to_ms(data$elapsed)
-  data$elapsed_str <- timestr(data$elapsed)
+  # data$elapsed_str <- timestr(data$elapsed)
   data$gap <- as.character(data$gap)
   data$gap <- sub("--", "0:0", data$gap)
   data$gap <- paste0("0:", data$gap)
   data$gap <- hms_to_ms(data$gap)
-  data$gap_str <- timestr(data$gap)
+  # data$gap_str <- timestr(data$gap)
   data$pace <- as.character(data$pace)
   data$pace <- paste0("0:", data$pace)
   data$pace <- hms_to_ms(data$pace)
-  data$pace_str <- timestr(data$pace)
+  # data$pace_str <- timestr(data$pace)
 
   # Translate age group to approximate age
   data$age <- data$age.group
