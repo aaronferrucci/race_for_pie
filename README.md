@@ -10,3 +10,5 @@ the link at some point, but this repo has a snapshot of the data.)
 As seems to be the case for footraces in general, data can be downloaded, but
 visualization is minimal. Hence this project.
 
+Here's a plot: https://aaronferrucci.github.io/run_for_pie/
+
